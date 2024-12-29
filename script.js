@@ -47,10 +47,13 @@ document.getElementById("login-form")?.addEventListener("submit", async (e) => {
     }
 });
 
-// Todos
+// Add Todo
 document.getElementById("todo-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const todo = document.getElementById("todo").value;
+    
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const status = document.getElementById("status").value;
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
@@ -58,11 +61,16 @@ document.getElementById("todo-form")?.addEventListener("submit", async (e) => {
         return;
     }
 
-    // Add the todo for the logged-in user
+    // Add the todo for the logged-in user with title, description, and status
     await fetch(`${backendUrl}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ todo, userId: user.id }),
+        body: JSON.stringify({
+            title,
+            description,
+            status,
+            userId: user.id
+        }),
     });
 
     loadTodos();
@@ -81,7 +89,13 @@ async function loadTodos() {
     const todos = await response.json();
 
     const list = document.getElementById("todo-list");
-    list.innerHTML = todos.map((t) => `<li>${t.todo}</li>`).join("");
+    list.innerHTML = todos.map((t) => `
+        <li>
+            <strong>Title:</strong> ${t.title}<br>
+            <strong>Description:</strong> ${t.description}<br>
+            <strong>Status:</strong> ${t.status}<br>
+        </li>
+    `).join("");
 }
 
 if (document.getElementById("todo-list")) loadTodos();
