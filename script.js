@@ -60,6 +60,13 @@ document.getElementById("todo-form")?.addEventListener("submit", async (e) => {
         alert("You must log in first.");
         return;
     }
+    if (!title || !description || !status) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // Log data to check if everything is captured correctly
+    console.log("Adding Todo:", { title, description, status, userId: user.id });
 
     // Add the todo for the logged-in user with title, description, and status
     await fetch(`${backendUrl}/todos`, {
