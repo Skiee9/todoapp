@@ -1,4 +1,4 @@
-const backendUrl = "https://garnet-clean-stoplight.glitch.me/"; 
+const backendUrl = "https://vivacious-short-battery.glitch.me"; 
 
 // Signup
 document.getElementById("signup-form")?.addEventListener("submit", async (e) => {
