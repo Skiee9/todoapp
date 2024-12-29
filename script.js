@@ -1,4 +1,4 @@
-const backendUrl = "https://<your-glitch-backend-url>"; // Replace with your Glitch URL
+const backendUrl = "https://garnet-clean-stoplight.glitch.me/"; 
 
 // Signup
 document.getElementById("signup-form")?.addEventListener("submit", async (e) => {
