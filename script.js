@@ -1,15 +1,17 @@
 const backendUrl = "https://vivacious-short-battery.glitch.me"; 
+// linkl of db deploy
 
 // Signup
 document.getElementById("signup-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value;
+    // getting mail and password
+    const email = document.getElementById("email").value;  
     const password = document.getElementById("password").value;
 
     const response = await fetch(`${backendUrl}/users`);
     const users = await response.json();
 
-    // Check if the email already exists
+    // Check if user exist already
     const existingUser = users.find((user) => user.email === email);
 
     if (existingUser) {
@@ -27,21 +29,22 @@ document.getElementById("signup-form")?.addEventListener("submit", async (e) => 
     document.getElementById("signup-message").textContent = "Signup successful!";
 });
 
-// Login
+// Login for user 
 document.getElementById("login-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch(`${backendUrl}/users`);
+//  fetch the user info
+    const response = await fetch(`${backendUrl}/users`); 
     const users = await response.json();
 
     const user = users.find((u) => u.email === email && u.password === password);
 
     if (user) {
-        // Store user info in localStorage
+        // information store in db
         localStorage.setItem("user", JSON.stringify(user));
-        window.location.href = "todos.html"; // Redirect to todos page
+        window.location.href = "todos.html"; // got otto todo
     } else {
         document.getElementById("login-message").textContent = "Invalid credentials.";
     }
@@ -64,11 +67,10 @@ document.getElementById("todo-form")?.addEventListener("submit", async (e) => {
         alert("Please fill in all fields.");
         return;
     }
-
-    // Log data to check if everything is captured correctly
+    // personal confirmation console can ;do
     console.log("Adding Todo:", { title, description, status, userId: user.id });
 
-    // Add the todo for the logged-in user with title, description, and status
+// add todo with information
     await fetch(`${backendUrl}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -80,10 +82,14 @@ document.getElementById("todo-form")?.addEventListener("submit", async (e) => {
         }),
     });
 
-    loadTodos();
+    loadTodos(); 
 });
-
-// Load Todos for the logged-in user
+// for menu buton
+function toggleNavbar() {
+    const nav = document.getElementById('navbar');
+    nav.classList.toggle('show'); // Toggle the navbar visibility
+}
+// wili load
 async function loadTodos() {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -96,13 +102,21 @@ async function loadTodos() {
     const todos = await response.json();
 
     const list = document.getElementById("todo-list");
-    list.innerHTML = todos.map((t) => `
-        <li>
-            <strong>Title:</strong> ${t.title}<br>
-            <strong>Description:</strong> ${t.description}<br>
-            <strong>Status:</strong> ${t.status}<br>
-        </li>
-    `).join("");
+// add todo
+    if (todos.length > 0) {
+        list.innerHTML = todos.map((t) => `
+            <li>
+                <strong>Title:</strong> ${t.title}<br>
+                <strong>Description:</strong> ${t.description}<br>
+                <strong>Status:</strong> ${t.status}<br>
+            </li>
+        `).join("");
+    } else {
+
+        list.innerHTML = "<li>No todos available.</li>";
+    }
 }
 
-if (document.getElementById("todo-list")) loadTodos();
+if (document.getElementById("todo-list"))
+    
+    loadTodos();
