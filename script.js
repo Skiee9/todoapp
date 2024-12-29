@@ -50,7 +50,7 @@ document.getElementById("login-form")?.addEventListener("submit", async (e) => {
 // Add Todo
 document.getElementById("todo-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
     const status = document.getElementById("status").value;
