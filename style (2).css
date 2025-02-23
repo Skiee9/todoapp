@@ -66,12 +66,7 @@ main {
     text-align: center;
     flex: 1;
 }
-img{
-    width: 40vw;
-    margin:auto;
-    
 
-}
 #todo-form, #signup-form, #login-form {
     display: grid;
     margin: auto;
@@ -100,9 +95,7 @@ button:hover {
 #todo-list {
     display: grid;
     padding: 40px 20px;
-   
     margin: auto;
-    /* background-color: #fbe3fc90; */
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
@@ -110,8 +103,6 @@ button:hover {
 h1 {
     text-align: center;
     font-family: cursive;
-    color:#1e1f1d;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 /* .menu-button:hover {
     background-color: rgb(210, 133, 237);
@@ -200,7 +191,6 @@ nav.show {
         display: none; 
     } */
 }
-
 
 /* /* Large screens  */
 @media (min-width: 1025px) {
