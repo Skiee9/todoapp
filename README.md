@@ -17,6 +17,7 @@ This project is a straightforward Todo List application that allows users to add
 - User-friendly interface
 
 ## Installation
-1. Clone the repository to your local machine:
+Clone the repository to your local machine:
    ```bash
    git clone https://github.com/yourusername/todo-list-app.git
+
