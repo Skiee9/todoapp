@@ -19,5 +19,5 @@ This project is a straightforward Todo List application that allows users to add
 ## Installation
 Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/todo-list-app.git
+   git clone https://github.com/skiee9/todo-list-app.git
 
